@@ -52,8 +52,6 @@ private fun painterState(
         .load(url)
         .into(object : CustomTarget<Bitmap>() {
             override fun onResourceReady(resource: Bitmap, transition: Transition<in Bitmap>?) {
-                println("BANANA got resource $resource")
-
                 painterState.value = BitmapPainter(resource.asImageBitmap())
             }
 

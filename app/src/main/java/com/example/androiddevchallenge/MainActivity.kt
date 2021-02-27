@@ -18,15 +18,13 @@ package com.example.androiddevchallenge
 import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
+import androidx.compose.material.*
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
-import com.example.androiddevchallenge.ui.components.PuppyCard
+import com.example.androiddevchallenge.ui.components.PuppyCardState
+import com.example.androiddevchallenge.ui.components.PuppyList
 import com.example.androiddevchallenge.ui.theme.MyTheme
-import com.example.androiddevchallenge.ui.theme.Size
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,13 +37,74 @@ class MainActivity : AppCompatActivity() {
     }
 }
 
+private val demo = PuppyCardState(
+    name = "Sepia",
+    avatar = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJN58dEs9l-pGNpZTd53W__gw0sJtd-o78JQ&usqp=CAU",
+    association = "casa del dogo",
+    weightKg = 30,
+    ageMonths = 32,
+    breed = "Pointer",
+    gender = "Female",
+)
+
 // Start building your app here!
 @Composable
 fun MyApp() {
     Surface(color = MaterialTheme.colors.background) {
-        PuppyCard(
-            modifier = Modifier.padding(Size.medium)
-        )
+        Scaffold(
+            topBar = {
+                TopAppBar(
+                    backgroundColor = MaterialTheme.colors.background,
+                    title = {
+                        Text(
+                            stringResource(id = R.string.app_name),
+                            style = MaterialTheme.typography.h5
+                        )
+                    },
+                )
+            },
+        ) {
+            PuppyList(
+                puppies = listOf(
+                    demo,
+                    demo,
+                    demo,
+                    demo,
+                    demo,
+                    demo,
+                    demo,
+                    demo,
+                    demo,
+                    demo,
+                    demo,
+                    demo,
+                    demo,
+                    demo,
+                    demo,
+                    demo,
+                    demo,
+                    demo,
+                    demo,
+                    demo,
+                    demo,
+                    demo,
+                    demo,
+                    demo,
+                    demo,
+                    demo,
+                    demo,
+                    demo,
+                    demo,
+                    demo,
+                    demo,
+                    demo,
+                    demo,
+                    demo,
+                    demo,
+                    demo,
+                )
+            )
+        }
     }
 }
 

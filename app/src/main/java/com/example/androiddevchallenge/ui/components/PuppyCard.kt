@@ -11,6 +11,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.layoutId
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ChainStyle
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.ConstraintSet
@@ -48,6 +49,7 @@ fun PuppyCard(
         modifier = modifier
             .fillMaxWidth()
             .wrapContentHeight(),
+        elevation = 4.dp,
     ) {
         ConstraintLayout(
             modifier = modifier
@@ -80,7 +82,7 @@ fun PuppyCard(
                 crumbs = infoCrumbs(puppy = puppy),
                 modifier = Modifier
                     .layoutId(INFO_LABEL_LAYOUT_ID)
-                    .padding(start = Size.small),
+                    .padding(start = Size.small, top = Size.medium),
             )
 
             if (puppy.adoptionState != null)

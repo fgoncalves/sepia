@@ -28,7 +28,7 @@ fun PetAssociation(
         Icon(
             painter = painterResource(id = R.drawable.ic_home),
             contentDescription = null,
-            tint = MaterialTheme.colors.primary,
+            tint = MaterialTheme.colors.onPrimary,
             modifier = Modifier
                 .width(Size.large)
                 .height(Size.large),

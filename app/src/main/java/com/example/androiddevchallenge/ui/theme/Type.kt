@@ -33,7 +33,7 @@ fun typography(colors: Colors) = Typography(
     subtitle1 = TextStyle(
         fontWeight = FontWeight.Normal,
         fontSize = 16.sp,
-        color = colors.primary,
+        color = colors.onPrimary,
     ),
     caption = TextStyle(
         fontFamily = FontFamily.Default,
