@@ -18,10 +18,12 @@ import com.example.androiddevchallenge.ui.theme.Size
 @Preview(showBackground = true)
 @Composable
 fun PetAssociation(
+    modifier: Modifier = Modifier,
     name: String = "Casa del dog",
 ) {
     Row(
-        verticalAlignment = Alignment.CenterVertically
+        verticalAlignment = Alignment.CenterVertically,
+        modifier = modifier,
     ) {
         Icon(
             painter = painterResource(id = R.drawable.ic_home),

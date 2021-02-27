@@ -17,11 +17,12 @@ import com.example.androiddevchallenge.ui.theme.Size
 @Preview(showBackground = true)
 @Composable
 fun Avatar(
+    modifier: Modifier = Modifier,
     url: String = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJN58dEs9l-pGNpZTd53W__gw0sJtd-o78JQ&usqp=CAU"
 ) {
     val shape = CircleShape
 
-    Column {
+    Column(modifier = modifier) {
         RemoteImage(
             modifier = Modifier
                 .size(Size.avatar)
