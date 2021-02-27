@@ -18,12 +18,16 @@ package com.example.androiddevchallenge
 import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
-import androidx.compose.material.*
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
-import com.example.androiddevchallenge.ui.components.PuppyCardState
-import com.example.androiddevchallenge.ui.components.PuppyList
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import com.example.androiddevchallenge.ui.navigation.Destination
+import com.example.androiddevchallenge.ui.screens.PuppyListScreen
+import com.example.androiddevchallenge.ui.screens.PuppyScreen
 import com.example.androiddevchallenge.ui.theme.MyTheme
 
 class MainActivity : AppCompatActivity() {
@@ -37,73 +41,24 @@ class MainActivity : AppCompatActivity() {
     }
 }
 
-private val demo = PuppyCardState(
-    name = "Sepia",
-    avatar = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJN58dEs9l-pGNpZTd53W__gw0sJtd-o78JQ&usqp=CAU",
-    association = "casa del dogo",
-    weightKg = 30,
-    ageMonths = 32,
-    breed = "Pointer",
-    gender = "Female",
-)
-
-// Start building your app here!
 @Composable
 fun MyApp() {
     Surface(color = MaterialTheme.colors.background) {
-        Scaffold(
-            topBar = {
-                TopAppBar(
-                    backgroundColor = MaterialTheme.colors.background,
-                    title = {
-                        Text(
-                            stringResource(id = R.string.app_name),
-                            style = MaterialTheme.typography.h5
-                        )
-                    },
-                )
-            },
+        val navController = rememberNavController()
+
+        NavHost(
+            navController = navController,
+            startDestination = Destination.Puppies.route
         ) {
-            PuppyList(
-                puppies = listOf(
-                    demo,
-                    demo,
-                    demo,
-                    demo,
-                    demo,
-                    demo,
-                    demo,
-                    demo,
-                    demo,
-                    demo,
-                    demo,
-                    demo,
-                    demo,
-                    demo,
-                    demo,
-                    demo,
-                    demo,
-                    demo,
-                    demo,
-                    demo,
-                    demo,
-                    demo,
-                    demo,
-                    demo,
-                    demo,
-                    demo,
-                    demo,
-                    demo,
-                    demo,
-                    demo,
-                    demo,
-                    demo,
-                    demo,
-                    demo,
-                    demo,
-                    demo,
-                )
-            )
+            composable(Destination.Puppies.route) {
+                PuppyListScreen(navController = navController)
+            }
+            composable(
+                route = Destination.Puppy.route,
+                arguments = Destination.Puppy.arguments,
+            ) {
+                PuppyScreen(Destination.Puppy.from(it.arguments!!))
+            }
         }
     }
 }

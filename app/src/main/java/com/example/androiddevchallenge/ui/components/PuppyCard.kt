@@ -20,6 +20,7 @@ import com.example.androiddevchallenge.R
 import com.example.androiddevchallenge.ui.theme.Size
 
 data class PuppyCardState(
+    val id: String = "",
     val name: String = "",
     val avatar: String = "",
     val association: String = "",
