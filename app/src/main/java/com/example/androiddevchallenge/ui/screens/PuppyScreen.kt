@@ -8,7 +8,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.*
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -18,6 +18,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.example.androiddevchallenge.R
 import com.example.androiddevchallenge.data.getPuppy
+import com.example.androiddevchallenge.data.updatePuppy
 import com.example.androiddevchallenge.domain.models.Puppy
 import com.example.androiddevchallenge.ui.components.*
 import com.example.androiddevchallenge.ui.shared.*
@@ -29,6 +30,8 @@ fun PuppyScreen(
     navController: NavHostController,
     puppyId: String = "",
 ) {
+    var puppy by remember { mutableStateOf(getPuppy(puppyId)!!) }
+
     Scaffold(
         topBar = {
             TopBar(title = stringResource(id = R.string.details)) {
@@ -37,7 +40,16 @@ fun PuppyScreen(
         },
         floatingActionButton = {
             FloatingActionButton(
-                onClick = { /*TODO*/ },
+                onClick = {
+                    puppy = puppy.copy(
+                        adoptionState = if (puppy.adoptionState == null)
+                            "Adoption Requested"
+                        else
+                            null
+                    )
+
+                    updatePuppy(puppy)
+                },
                 backgroundColor = MaterialTheme.colors.secondary,
             ) {
                 Row(
@@ -45,14 +57,20 @@ fun PuppyScreen(
                     verticalAlignment = Alignment.CenterVertically,
                 ) {
                     Icon(
-                        painter = painterResource(id = R.drawable.ic_favorite_border),
+                        painter = if (puppy.adoptionState == null)
+                            painterResource(id = R.drawable.ic_favorite_border)
+                        else
+                            painterResource(id = R.drawable.ic_favorite),
                         contentDescription = null,
                         modifier = Modifier.padding(end = Size.small),
                         tint = MaterialTheme.colors.primary,
                     )
 
                     Text(
-                        text = stringResource(id = R.string.request_adoption),
+                        text = if (puppy.adoptionState == null)
+                            stringResource(id = R.string.request_adoption)
+                        else
+                            stringResource(id = R.string.adoption_requested),
                         style = MaterialTheme.typography.subtitle1.copy(
                             color = MaterialTheme.colors.primary,
                         ),
@@ -61,8 +79,6 @@ fun PuppyScreen(
             }
         }
     ) {
-        val puppy = getPuppy(puppyId)!!
-
         val listItems = itemsFor(puppy)
 
         LazyColumn(
