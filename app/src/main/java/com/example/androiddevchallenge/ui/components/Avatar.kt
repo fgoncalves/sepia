@@ -11,7 +11,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.androiddevchallenge.R
 import com.example.androiddevchallenge.ui.theme.Size
 
 @Preview(showBackground = true)
@@ -35,7 +34,6 @@ fun Avatar(
                     shape = shape,
                 ),
             url = url,
-            placeholder = R.drawable.ic_launcher_foreground
         )
     }
 }

@@ -24,7 +24,7 @@ data class PuppyInfoState(
     val breed: String = "",
     val gender: String = "",
     val neutered: Boolean = false,
-    val specialNeeds: String? = null,
+    val specialNeeds: String = "",
 )
 
 @Preview(showBackground = true)
@@ -77,7 +77,7 @@ fun PuppyInfo(
                 stringResource(id = R.string.not_neutered),
         )
 
-        if (state.specialNeeds != null)
+        if (state.specialNeeds.isNotBlank())
             PuppyInfoSection(
                 modifier = sectionModifier,
                 iconRes = R.drawable.ic_accessible,

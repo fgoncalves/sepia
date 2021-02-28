@@ -6,6 +6,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavController
 import androidx.navigation.compose.navigate
 import com.example.androiddevchallenge.R
+import com.example.androiddevchallenge.data.getAllPuppies
 import com.example.androiddevchallenge.ui.components.PuppyCardState
 import com.example.androiddevchallenge.ui.components.PuppyList
 import com.example.androiddevchallenge.ui.components.TopBar
@@ -29,47 +30,22 @@ fun PuppyListScreen(
         topBar = { TopBar(title = stringResource(id = R.string.app_name)) },
     ) {
         PuppyList(
-            puppies = listOf(
-                demo,
-                demo,
-                demo,
-                demo,
-                demo,
-                demo,
-                demo,
-                demo,
-                demo,
-                demo,
-                demo,
-                demo,
-                demo,
-                demo,
-                demo,
-                demo,
-                demo,
-                demo,
-                demo,
-                demo,
-                demo,
-                demo,
-                demo,
-                demo,
-                demo,
-                demo,
-                demo,
-                demo,
-                demo,
-                demo,
-                demo,
-                demo,
-                demo,
-                demo,
-                demo,
-                demo,
-            ),
+            puppies = getAllPuppies().map {
+                PuppyCardState(
+                    id = it.id,
+                    name = it.name,
+                    avatar = it.avatar,
+                    association = it.association,
+                    weightKg = it.weightKg,
+                    ageMonths = it.ageMonths,
+                    breed = it.breed,
+                    gender = it.gender,
+                    adoptionState = it.adoptionState,
+                )
+            },
             onItemClicked = {
                 navController.navigate(
-                    Destination.Puppy.with("foo")
+                    Destination.Puppy.with(it.id)
                 )
             }
         )

@@ -28,7 +28,7 @@ fun RemoteImage(
     modifier: Modifier = Modifier,
     url: String = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJN58dEs9l-pGNpZTd53W__gw0sJtd-o78JQ&usqp=CAU",
     @DrawableRes
-    placeholder: Int = R.drawable.ic_paw,
+    placeholder: Int = R.drawable.ic_paw_with_background,
 ) {
     val painterState by painterState(placeholder, url)
 

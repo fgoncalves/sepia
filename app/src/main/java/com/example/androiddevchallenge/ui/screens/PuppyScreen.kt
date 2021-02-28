@@ -17,32 +17,16 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.example.androiddevchallenge.R
+import com.example.androiddevchallenge.data.getPuppy
 import com.example.androiddevchallenge.domain.models.Puppy
 import com.example.androiddevchallenge.ui.components.*
 import com.example.androiddevchallenge.ui.shared.*
 import com.example.androiddevchallenge.ui.theme.Size
 
-fun fake(id: String) = Puppy(
-    id = id,
-    name = "Sepia",
-    avatar = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJN58dEs9l-pGNpZTd53W__gw0sJtd-o78JQ&usqp=CAU",
-    association = "casa del dogo",
-    adoptionState = "Adopted",
-    bio = "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form...",
-    weightKg = 23,
-    ageMonths = 32,
-    breed = "Strong Perro",
-    gender = "Male",
-    specialNeeds = "Requires a lot of love",
-    neutered = true,
-)
-
 
 @Composable
 fun PuppyScreen(
     navController: NavHostController,
-
-    // Can this be made a state?
     puppyId: String = "",
 ) {
     Scaffold(
@@ -77,7 +61,7 @@ fun PuppyScreen(
             }
         }
     ) {
-        val puppy = fake(puppyId)
+        val puppy = getPuppy(puppyId)!!
 
         val listItems = itemsFor(puppy)
 
