@@ -25,18 +25,22 @@ import androidx.compose.ui.unit.sp
 // Set of Material typography styles to start with
 fun typography(colors: Colors) = Typography(
     h5 = TextStyle(
-        fontWeight = FontWeight.W700,
+        fontWeight = FontWeight.Bold,
         fontSize = 24.sp,
         letterSpacing = 0.sp,
         color = colors.primary,
     ),
     subtitle1 = TextStyle(
-        fontWeight = FontWeight.Normal,
+        fontWeight = FontWeight.SemiBold,
         fontSize = 16.sp,
         color = colors.onPrimary,
     ),
+    body1 = TextStyle(
+        fontWeight = FontWeight.Normal,
+        fontSize = 16.sp,
+        color = colors.primary,
+    ),
     caption = TextStyle(
-        fontFamily = FontFamily.Default,
         fontWeight = FontWeight.Normal,
         fontSize = 12.sp,
         color = colors.onPrimary,

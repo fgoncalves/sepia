@@ -12,4 +12,5 @@ data class Puppy(
     val specialNeeds: String = "",
     val neutered: Boolean = false,
     val adoptionState: String? = null,
+    val bio: String = "",
 )

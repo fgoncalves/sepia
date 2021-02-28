@@ -10,4 +10,8 @@
       the License.
       -->
     <string name="app_name">Pawfect</string>
+    <string name="bio">Bio</string>
+    <string name="neutered">This puppy has been neutered</string>
+    <string name="not_neutered">This puppy has not yet been neutered</string>
+    <string name="details">Details</string>
 </resources>
