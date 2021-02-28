@@ -109,10 +109,11 @@ private fun ComposableFor(
             modifier = Modifier.padding(Size.large),
         )
 
-        is PuppyDetailsBioState -> Bio(
-            text = item.bio,
-            modifier = Modifier.padding(vertical = Size.small, horizontal = Size.large),
-        )
+        is PuppyDetailsBioState ->
+            Bio(
+                text = item.bio,
+                modifier = Modifier.padding(vertical = Size.small, horizontal = Size.large),
+            )
 
         is PuppyDetailsInfoState -> PuppyInfo(
             modifier = Modifier.padding(vertical = Size.small, horizontal = Size.large),
