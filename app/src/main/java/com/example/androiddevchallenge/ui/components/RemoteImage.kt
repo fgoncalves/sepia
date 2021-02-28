@@ -20,6 +20,7 @@ import androidx.core.graphics.drawable.toBitmap
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
+import com.example.androiddevchallenge.R
 
 @Preview(showBackground = true)
 @Composable
@@ -27,7 +28,7 @@ fun RemoteImage(
     modifier: Modifier = Modifier,
     url: String = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJN58dEs9l-pGNpZTd53W__gw0sJtd-o78JQ&usqp=CAU",
     @DrawableRes
-    placeholder: Int = 0,
+    placeholder: Int = R.drawable.ic_paw,
 ) {
     val painterState by painterState(placeholder, url)
 

@@ -4,17 +4,20 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.res.stringResource
-import com.example.androiddevchallenge.R
 
 @Composable
-fun topBar() =
+fun TopBar(
+    title: String = "",
+    navigationIcon: @Composable (() -> Unit)? = null,
+) {
     TopAppBar(
         backgroundColor = MaterialTheme.colors.background,
         title = {
             Text(
-                stringResource(id = R.string.app_name),
+                title,
                 style = MaterialTheme.typography.h5
             )
         },
+        navigationIcon = navigationIcon
     )
+}

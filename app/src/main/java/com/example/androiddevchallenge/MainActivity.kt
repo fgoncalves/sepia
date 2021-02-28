@@ -57,7 +57,10 @@ fun MyApp() {
                 route = Destination.Puppy.route,
                 arguments = Destination.Puppy.arguments,
             ) {
-                PuppyScreen(Destination.Puppy.from(it.arguments!!))
+                PuppyScreen(
+                    navController = navController,
+                    puppyId = Destination.Puppy.from(it.arguments!!),
+                )
             }
         }
     }

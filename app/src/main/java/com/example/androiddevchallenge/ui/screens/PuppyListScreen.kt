@@ -2,11 +2,13 @@ package com.example.androiddevchallenge.ui.screens
 
 import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavController
 import androidx.navigation.compose.navigate
+import com.example.androiddevchallenge.R
 import com.example.androiddevchallenge.ui.components.PuppyCardState
 import com.example.androiddevchallenge.ui.components.PuppyList
-import com.example.androiddevchallenge.ui.components.topBar
+import com.example.androiddevchallenge.ui.components.TopBar
 import com.example.androiddevchallenge.ui.navigation.Destination
 
 private val demo = PuppyCardState(
@@ -24,7 +26,7 @@ fun PuppyListScreen(
     navController: NavController,
 ) {
     Scaffold(
-        topBar = { topBar() },
+        topBar = { TopBar(title = stringResource(id = R.string.app_name)) },
     ) {
         PuppyList(
             puppies = listOf(
