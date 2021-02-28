@@ -10,6 +10,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.layoutId
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ChainStyle
@@ -18,6 +19,7 @@ import androidx.constraintlayout.compose.ConstraintSet
 import androidx.constraintlayout.compose.Dimension
 import com.example.androiddevchallenge.R
 import com.example.androiddevchallenge.ui.theme.Size
+import com.example.androiddevchallenge.ui.utils.formattedAge
 
 data class PuppyCardState(
     val id: String = "",
@@ -170,8 +172,7 @@ private fun infoCrumbs(puppy: PuppyCardState) =
     listOf(
         InfoCrumbState(
             icon = painterResource(id = R.drawable.ic_date_range),
-            // TODO: Translate and format this properly
-            text = "${puppy.ageMonths} months",
+            text = formattedAge(ageInMonths = puppy.ageMonths),
         ),
         InfoCrumbState(
             icon = painterResource(id = R.drawable.ic_paw),
@@ -179,8 +180,7 @@ private fun infoCrumbs(puppy: PuppyCardState) =
         ),
         InfoCrumbState(
             icon = painterResource(id = R.drawable.ic_monitor_weight),
-            // TODO: Translate and format this properly
-            text = "${puppy.weightKg} Kg",
+            text = stringResource(id = R.string.weight, puppy.weightKg),
         ),
         InfoCrumbState(
             text = puppy.gender,

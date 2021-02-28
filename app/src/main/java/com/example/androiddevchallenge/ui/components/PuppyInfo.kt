@@ -17,6 +17,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.androiddevchallenge.R
 import com.example.androiddevchallenge.ui.theme.Size
+import com.example.androiddevchallenge.ui.utils.formattedAge
 
 data class PuppyInfoState(
     val ageInMonths: Int = 0,
@@ -43,14 +44,14 @@ fun PuppyInfo(
         PuppyInfoSection(
             modifier = sectionModifier,
             iconRes = R.drawable.ic_date_range,
-            text = "${state.ageInMonths} months",
+            text = formattedAge(ageInMonths = state.ageInMonths),
         )
 
         // Weight
         PuppyInfoSection(
             modifier = sectionModifier,
             iconRes = R.drawable.ic_monitor_weight,
-            text = "${state.weightInKg} Kg",
+            text = stringResource(id = R.string.weight, state.weightInKg),
         )
 
         // Breed
