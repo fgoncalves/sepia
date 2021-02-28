@@ -11,8 +11,8 @@
 <resources>
     <color name="sea_green">#FF1DB980</color>
     <color name="turquoise">#FF37EEBA</color>
-    <color name="red">#FFDD0074</color>
-    <color name="dark_red">#FFB1006A</color>
+    <color name="red">#FFC2175B</color>
+    <color name="dark_red">#FF880F4F</color>
     <color name="firebrick">#FFB00021</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>

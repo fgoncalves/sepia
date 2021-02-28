@@ -1,5 +1,6 @@
 package com.example.androiddevchallenge.ui.screens
 
+import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
@@ -12,6 +13,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
@@ -32,6 +34,8 @@ fun PuppyScreen(
 ) {
     var puppy by remember { mutableStateOf(getPuppy(puppyId)!!) }
 
+    val adoptionString = stringResource(id = R.string.adoption_requested)
+
     Scaffold(
         topBar = {
             TopBar(title = stringResource(id = R.string.details)) {
@@ -39,43 +43,15 @@ fun PuppyScreen(
             }
         },
         floatingActionButton = {
-            FloatingActionButton(
-                onClick = {
-                    puppy = puppy.copy(
-                        adoptionState = if (puppy.adoptionState == null)
-                            "Adoption Requested"
-                        else
-                            null
-                    )
+            AdoptionFab(!puppy.adoptionState.isNullOrBlank()) {
+                puppy = puppy.copy(
+                    adoptionState = if (puppy.adoptionState == null)
+                        adoptionString
+                    else
+                        null
+                )
 
-                    updatePuppy(puppy)
-                },
-                backgroundColor = MaterialTheme.colors.secondary,
-            ) {
-                Row(
-                    modifier = Modifier.padding(horizontal = Size.medium),
-                    verticalAlignment = Alignment.CenterVertically,
-                ) {
-                    Icon(
-                        painter = if (puppy.adoptionState == null)
-                            painterResource(id = R.drawable.ic_favorite_border)
-                        else
-                            painterResource(id = R.drawable.ic_favorite),
-                        contentDescription = null,
-                        modifier = Modifier.padding(end = Size.small),
-                        tint = MaterialTheme.colors.primary,
-                    )
-
-                    Text(
-                        text = if (puppy.adoptionState == null)
-                            stringResource(id = R.string.request_adoption)
-                        else
-                            stringResource(id = R.string.adoption_requested),
-                        style = MaterialTheme.typography.subtitle1.copy(
-                            color = MaterialTheme.colors.primary,
-                        ),
-                    )
-                }
+                updatePuppy(puppy)
             }
         }
     ) {
@@ -170,3 +146,40 @@ private fun itemsFor(puppy: Puppy) =
             neutered = puppy.neutered,
         )
     )
+
+@Composable
+fun AdoptionFab(
+    isAdopted: Boolean = false,
+    onClick: () -> Unit,
+) {
+    FloatingActionButton(
+        onClick = onClick,
+        backgroundColor = MaterialTheme.colors.secondary,
+    ) {
+        Row(
+            modifier = Modifier.padding(horizontal = Size.medium),
+            verticalAlignment = Alignment.CenterVertically,
+        ) {
+            Icon(
+                painter = if (isAdopted)
+                    painterResource(id = R.drawable.ic_favorite)
+                else
+                    painterResource(id = R.drawable.ic_favorite_border),
+                contentDescription = null,
+                modifier = Modifier.padding(end = Size.small),
+                tint = Color.White,
+            )
+
+            Text(
+                text = if (isAdopted)
+                    stringResource(id = R.string.adoption_requested)
+                else
+                    stringResource(id = R.string.request_adoption),
+                style = MaterialTheme.typography.subtitle1.copy(
+                    color = Color.White,
+                ),
+                modifier = Modifier.animateContentSize()
+            )
+        }
+    }
+}
