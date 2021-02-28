@@ -18,3 +18,6 @@ fun formattedAge(ageInMonths: Int) =
         val years = ageInMonths / 12
         quantityStringResource(R.plurals.age_years, years, years)
     }
+
+const val DEFAULT_ANIMATION_DURATION = 200
+

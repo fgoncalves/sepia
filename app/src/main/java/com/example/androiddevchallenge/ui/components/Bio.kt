@@ -23,6 +23,7 @@ import androidx.constraintlayout.compose.ConstraintSet
 import androidx.constraintlayout.compose.Dimension
 import com.example.androiddevchallenge.R
 import com.example.androiddevchallenge.ui.theme.Size
+import com.example.androiddevchallenge.ui.utils.DEFAULT_ANIMATION_DURATION
 
 private const val EXPAND_ANIMATION_DURATION = 200
 
@@ -40,13 +41,13 @@ fun Bio(
         }
     }
     val transition = updateTransition(transitionState)
-    val maxLines by transition.animateInt({ tween(durationMillis = EXPAND_ANIMATION_DURATION) }) {
+    val maxLines by transition.animateInt({ tween(durationMillis = DEFAULT_ANIMATION_DURATION) }) {
         if (expanded)
             7
         else
             3
     }
-    val rotation by transition.animateFloat({ tween(durationMillis = EXPAND_ANIMATION_DURATION) }) {
+    val rotation by transition.animateFloat({ tween(durationMillis = DEFAULT_ANIMATION_DURATION) }) {
         if (expanded)
             180f
         else

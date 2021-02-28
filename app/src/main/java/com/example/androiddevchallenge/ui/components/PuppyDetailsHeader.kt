@@ -1,5 +1,9 @@
 package com.example.androiddevchallenge.ui.components
 
+import androidx.compose.animation.core.MutableTransitionState
+import androidx.compose.animation.core.animateFloat
+import androidx.compose.animation.core.tween
+import androidx.compose.animation.core.updateTransition
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -7,16 +11,22 @@ import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.layoutId
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.ConstraintSet
 import androidx.constraintlayout.compose.Dimension
+import com.example.androiddevchallenge.R
 import com.example.androiddevchallenge.ui.shared.PuppyDetailsHeaderState
 import com.example.androiddevchallenge.ui.theme.Size
+import com.example.androiddevchallenge.ui.utils.DEFAULT_ANIMATION_DURATION
 
 
 @Preview(showBackground = true)
@@ -30,6 +40,19 @@ fun PuppyDetailsHeader(
             .fillMaxWidth()
             .wrapContentHeight(),
     ) {
+
+        val transitionState = remember {
+            MutableTransitionState(state.adoptionState.isNullOrBlank()).apply {
+                targetState = !state.adoptionState.isNullOrBlank()
+            }
+        }
+        val transition = updateTransition(transitionState)
+        val alpha by transition.animateFloat({ tween(durationMillis = DEFAULT_ANIMATION_DURATION) }) {
+            if (state.adoptionState.isNullOrBlank())
+                0f
+            else
+                1f
+        }
 
         RemoteImage(
             modifier = Modifier.layoutId(AVATAR_LAYOUT_ID),
@@ -49,20 +72,19 @@ fun PuppyDetailsHeader(
                 .padding(horizontal = Size.medium, vertical = Size.xsmall),
         )
 
-        if (state.adoptionState != null)
-            Text(
-                text = state.adoptionState,
-                style = MaterialTheme.typography.caption.copy(
-                    color = MaterialTheme.colors.secondary,
-                    background = Color.Black,
-                ),
-                modifier = Modifier
-                    .layoutId(ADOPTION_STATE_LAYOUT_ID)
-                    // How can I pin this to the theme?
-                    .padding(start = Size.large, bottom = Size.large)
-                    .background(color = Color.Black)
-                    .padding(horizontal = Size.medium, vertical = Size.xsmall),
-            )
+        Text(
+            text = stringResource(id = R.string.adoption_requested),
+            style = MaterialTheme.typography.caption.copy(
+                color = MaterialTheme.colors.secondary,
+                background = Color.Black,
+            ),
+            modifier = Modifier
+                .alpha(alpha)
+                .layoutId(ADOPTION_STATE_LAYOUT_ID)
+                .padding(start = Size.large, bottom = Size.large)
+                .background(color = Color.Black)
+                .padding(horizontal = Size.medium, vertical = Size.xsmall),
+        )
     }
 }
 
