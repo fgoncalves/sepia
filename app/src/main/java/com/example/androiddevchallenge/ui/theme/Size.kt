@@ -13,4 +13,5 @@ object Size {
 
     val icon = 12.dp
     val avatar = 100.dp
+    val largeAvatar = 300.dp
 }

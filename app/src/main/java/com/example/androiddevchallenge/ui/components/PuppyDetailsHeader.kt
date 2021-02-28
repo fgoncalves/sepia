@@ -19,7 +19,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.layoutId
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.ConstraintSet
 import androidx.constraintlayout.compose.Dimension
@@ -67,7 +66,6 @@ fun PuppyDetailsHeader(
             modifier = Modifier
                 .layoutId(NAME_LAYOUT_ID)
                 .padding(start = Size.large)
-                // How can I pin this to the theme?
                 .background(color = Color.Black)
                 .padding(horizontal = Size.medium, vertical = Size.xsmall),
         )
@@ -76,7 +74,6 @@ fun PuppyDetailsHeader(
             text = stringResource(id = R.string.adoption_requested),
             style = MaterialTheme.typography.caption.copy(
                 color = MaterialTheme.colors.secondary,
-                background = Color.Black,
             ),
             modifier = Modifier
                 .alpha(alpha)
@@ -105,7 +102,7 @@ private fun headerConstraintSet() =
             bottom.linkTo(parent.bottom)
 
             width = Dimension.fillToConstraints
-            height = Dimension.value(300.dp)
+            height = Dimension.value(Size.largeAvatar)
         }
 
         constrain(adoptionState) {
