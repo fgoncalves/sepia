@@ -38,9 +38,10 @@ fun PuppyScreen(
 
     Scaffold(
         topBar = {
-            TopBar(title = stringResource(id = R.string.details)) {
-                NavigateUpIcon(navController)
-            }
+            TopBar(
+                title = stringResource(id = R.string.details),
+                navigationIcon = { NavigateUpIcon(navController) },
+            )
         },
         floatingActionButton = {
             AdoptionFab(!puppy.adoptionState.isNullOrBlank()) {

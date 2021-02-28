@@ -17,6 +17,7 @@
     <string name="request_adoption">Adopt</string>
     <string name="adoption_requested">Adoption requested</string>
     <string name="weight">%1$d Kg</string>
+    <string name="search_things">Search name, breed, age and gender</string>
     <plurals name="age_months">
         <item quantity="one">%1$d month</item>
         <item quantity="other">%1$d months</item>

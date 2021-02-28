@@ -28,7 +28,8 @@ fun PuppyList(
             PuppyCard(
                 modifier = Modifier
                     .padding(
-                        top = if (index == 0 || index == puppies.lastIndex) 0.dp else Size.small
+                        top = if (index == 0) 0.dp else Size.xsmall,
+                        bottom = if (index == puppies.lastIndex) 0.dp else Size.xsmall
                     )
                     .clickable { onItemClicked(item) },
                 puppy = item,
