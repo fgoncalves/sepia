@@ -97,7 +97,8 @@ private fun PuppyInfoSection(
         Icon(
             painter = painterResource(id = iconRes),
             contentDescription = null,
-            modifier = Modifier.padding(end = Size.small)
+            modifier = Modifier.padding(end = Size.small),
+            tint = MaterialTheme.colors.primary,
         )
 
         Text(

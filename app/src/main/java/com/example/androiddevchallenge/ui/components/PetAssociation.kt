@@ -30,8 +30,8 @@ fun PetAssociation(
             contentDescription = null,
             tint = MaterialTheme.colors.onPrimary,
             modifier = Modifier
-                .width(Size.large)
-                .height(Size.large),
+                .width(Size.xlarge)
+                .height(Size.xlarge),
         )
 
         Spacer(modifier = Modifier.width(Size.micro))

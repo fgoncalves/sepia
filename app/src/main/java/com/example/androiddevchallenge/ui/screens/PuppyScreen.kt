@@ -2,17 +2,19 @@ package com.example.androiddevchallenge.ui.screens
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material.Icon
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Scaffold
+import androidx.compose.material.*
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.example.androiddevchallenge.R
 import com.example.androiddevchallenge.domain.models.Puppy
@@ -45,16 +47,43 @@ fun PuppyScreen(
 ) {
     Scaffold(
         topBar = {
-            TopBar {
+            TopBar(title = stringResource(id = R.string.details)) {
                 NavigateUpIcon(navController)
             }
         },
+        floatingActionButton = {
+            FloatingActionButton(
+                onClick = { /*TODO*/ },
+                backgroundColor = MaterialTheme.colors.secondary,
+            ) {
+                Row(
+                    modifier = Modifier.padding(horizontal = Size.medium),
+                    verticalAlignment = Alignment.CenterVertically,
+                ) {
+                    Icon(
+                        painter = painterResource(id = R.drawable.ic_favorite_border),
+                        contentDescription = null,
+                        modifier = Modifier.padding(end = Size.small),
+                        tint = MaterialTheme.colors.primary,
+                    )
+
+                    Text(
+                        text = stringResource(id = R.string.request_adoption),
+                        style = MaterialTheme.typography.subtitle1.copy(
+                            color = MaterialTheme.colors.primary,
+                        ),
+                    )
+                }
+            }
+        }
     ) {
         val puppy = fake(puppyId)
 
         val listItems = itemsFor(puppy)
 
-        LazyColumn {
+        LazyColumn(
+            contentPadding = PaddingValues(bottom = 100.dp),
+        ) {
             items(listItems) {
                 ComposableFor(it)
             }
